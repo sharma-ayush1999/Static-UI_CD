@@ -1,1 +1,65 @@
-<p>college-list works!</p>
+<div id="collegeList">
+    <div class="collegeList-container">
+        <h2>Colleges in North India</h2>
+        <div class="collegeCard">
+            <div  *ngFor='let items of collegeDetails' class="collegeCard-container">
+                <div class="collegeCard-upper">
+                    <div class="collegeCard-upper__container">
+                        <img src='../../assets/images/college.jpg' alt="college image">
+                        <div class="img-overlay">
+                        </div>
+                        <div class="img-overlay__content">
+                            <div class="content1">
+                                <p>{{ items.rating }}/5</p>
+                                <p>{{ items.rating_remarks }}</p>
+                            </div>
+                            <div class="content2">
+                                <div>
+                                    <p>{{ items.tags[0]}}</p>
+                                    <p>{{ items.tags[1] }}</p>
+                                </div>
+                                <p>#{{ items.ranking }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collegeCard-lower">
+                    <div class="collegeCard-lower__container">
+                        <div class="lowerRow1">
+                            <div>
+                                <p>{{ items.college_name }}</p>
+                                <ul class="list-inline rating-list"
+                                *ngFor="let star of stars" style="display: inline-block" >
+                                <li (click)="countStar(star)"
+                                    [ngClass]="{'selected': (star <= selectedValue)}">
+                                    <i class="fa fa-star"></i>
+                                </li>
+                                </ul>
+                            </div>
+                            <p><i style="font-size:12px" class="fa">&#xf156;</i>{{ items.original_fees }}</p>
+                        </div>
+                        <div class="lowerRow2">
+                            <div>
+                                <p>{{ items.nearest_place[0] }}</p>
+                                <span>|</span>
+                                <p>{{ items.nearest_place[1] }}</p>
+                            </div>
+                            <div>
+                                <p><i style="font-size:24px" class="fa" style="color: red;font-size: 1.8vw;">&#xf156;</i>{{ items.discounted_fees }}</p>
+                                <p>{{ items.fees_cycle}}</p>
+                            </div>
+                        </div>
+                        <div class="lowerRow3">
+                            <p>93% Match:</p>
+                            <p>{{ items.famous_nearest_places }}</p>
+                        </div>
+                        <div class="lowerRow4">
+                            <p>{{ items.offertext }}</p>
+                            <p>{{ items.amenties[0]}}  {{ items.amenties[1] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

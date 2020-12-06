@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  BackendService } from '../backend.service'
 
 @Component({
   selector: 'app-college-list',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollegeListComponent implements OnInit {
 
-  constructor() { }
+  public collegeDetails = [];
+   stars: number[] = [1, 2, 3, 4, 5];
+    selectedValue: number;
+
+    countStar(star) {
+      this.selectedValue = star;
+      console.log('Value of star', star);
+    }
+
+  constructor(private backendService: BackendService) { }
 
   ngOnInit(): void {
+    this.backendService.getCollegeDetails().subscribe(data => {
+      this.collegeDetails = data;
+      console.log(data);
+    });
   }
 
 }
